@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>مكونات الحاسوب — اعداد الست: بان امين سليمان</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=Orbitron:wght@700;900&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="iq-flag-bg">
+			<div class="f-red"></div>
+			<div class="f-white">
+				<svg viewBox="0 0 800 533" xmlns="http://www.w3.org/2000/svg">
+					<text
+						x="400"
+						y="320"
+						font-size="340"
+						text-anchor="middle"
+						fill="#007A3D"
+						font-family="serif">
+						الله أكبر
+					</text>
+				</svg>
+			</div>
+			<div class="f-black"></div>
+		</div>
+		<header>
+			<span class="header-logo">💻</span>
+			<div class="header-en">
+				COMPUTER COMPONENTS — INTERACTIVE 3D LAB
+			</div>
+			<h1 class="header-ar">مكونات الحاسوب التفاعلية</h1>
+			<p class="header-subtitle">
+				تعلّم كيف يعمل الحاسوب — الذاكرة، التخزين، المعالج وأكثر!
+			</p>
+			<div class="header-author">اعداد الست: بان امين سليمان</div>
+		</header>
+		<nav class="nav-tabs" id="navTabs">
+			<button
+				class="tab-btn active"
+				data-tab="components"
+				style="background: #00f5ff; color: #000"
+				onclick="switchTab('components', this, '#00f5ff')">
+				<span class="tab-icon">🔩</span> مكونات الحاسوب
+			</button>
+			<button
+				class="tab-btn"
+				data-tab="memory"
+				onclick="switchTab('memory', this, '#39ff88')">
+				<span class="tab-icon">🧠</span> الذاكرة RAM
+			</button>
+			<button
+				class="tab-btn"
+				data-tab="storage"
+				onclick="switchTab('storage', this, '#ff7c38')">
+				<span class="tab-icon">💾</span> التخزين
+			</button>
+		</nav>
+		<section class="section active" id="sec-components">
+			<div class="sec-title">
+				<h2 style="color: var(--cyan)">🔩 مكونات الحاسوب الأساسية</h2>
+				<p>اضغط على أي مكوّن لرؤية شرح تفصيلي ثلاثي الأبعاد</p>
+			</div>
+
+			<div class="comp-grid" id="compGrid"></div>
+			<div class="detail-panel" id="detailPanel"></div>
+		</section>
+		<section class="section" id="sec-memory">
+			<div class="sec-title">
+				<h2 style="color: var(--green2)">🧠 الذاكرة العشوائية — RAM</h2>
+				<p>افهم كيف تعمل الذاكرة وكيف تؤثر على سرعة الحاسوب</p>
+			</div>
+			<div class="memory-hero">
+				<div
+					style="
+						display: flex;
+						align-items: center;
+						gap: 16px;
+						margin-bottom: 18px;
+					">
+					<canvas
+						id="ramCanvas3d"
+						width="90"
+						height="90"
+						style="border-radius: 14px; flex-shrink: 0"></canvas>
+					<div>
+						<div class="mem-title" style="color: var(--green2)">
+							ما هي الذاكرة العشوائية؟
+						</div>
+						<div class="mem-desc" style="margin-bottom: 0">
+							الـ RAM (Random Access Memory) هي مساحة العمل
+							المؤقتة للحاسوب. كلما فتحت برنامجاً، يُحمَّل في
+							الذاكرة لأن الوصول إليها سريع جداً مقارنة بالقرص
+							الصلب. عندما تُطفئ الحاسوب، تُمحى كل بيانات الـ RAM
+							تلقائياً — لهذا يُسمى "مؤقتة".
+						</div>
+					</div>
+				</div>
+
+				<div class="mem-slider-wrap">
+					<span class="mem-label">حجم الذاكرة:</span>
+					<input
+						type="range"
+						class="mem-slider"
+						id="ramSlider"
+						min="1"
+						max="8"
+						value="3"
+						oninput="updateRam(this.value)" />
+					<span class="mem-val" id="ramVal">4 GB</span>
+				</div>
+				<div class="mem-bar-track">
+					<div class="mem-bar-fill" id="ramBar" style="width: 37.5%">
+						<span class="mem-bar-label" id="ramBarLabel"
+							>4 GB من 64 GB</span
+						>
+					</div>
+				</div>
+				<div
+					style="
+						font-size: 0.78rem;
+						color: var(--dim);
+						margin-bottom: 16px;
+						font-weight: 600;
+					"
+					id="ramStatus"></div>
+
+				<div class="mem-tasks" id="memTasks"></div>
+			</div>
+
+			<div class="memory-hero">
+				<div
+					class="mem-title"
+					style="color: var(--cyan); margin-bottom: 16px">
+					أنواع الذاكرة
+				</div>
+				<div
+					style="
+						display: grid;
+						grid-template-columns: repeat(
+							auto-fill,
+							minmax(220px, 1fr)
+						);
+						gap: 14px;
+					">
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border: 1px solid rgba(0, 245, 255, 0.2);
+							border-radius: 14px;
+							padding: 16px;
+						">
+						<div style="font-size: 1.4rem; margin-bottom: 8px">
+							⚡
+						</div>
+						<div
+							style="
+								font-weight: 900;
+								color: var(--cyan);
+								margin-bottom: 6px;
+							">
+							DDR5
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							أحدث جيل — سرعة نقل تصل إلى 6400 MT/s. مستخدمة في
+							الحواسيب الحديثة 2023+
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border: 1px solid rgba(57, 255, 136, 0.2);
+							border-radius: 14px;
+							padding: 16px;
+						">
+						<div style="font-size: 1.4rem; margin-bottom: 8px">
+							🔋
+						</div>
+						<div
+							style="
+								font-weight: 900;
+								color: var(--green2);
+								margin-bottom: 6px;
+							">
+							DDR4
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							الجيل الشائع حالياً — سرعة 2133–3200 MT/s. موجودة في
+							معظم الحواسيب 2014–2022
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border: 1px solid rgba(255, 124, 56, 0.2);
+							border-radius: 14px;
+							padding: 16px;
+						">
+						<div style="font-size: 1.4rem; margin-bottom: 8px">
+							📦
+						</div>
+						<div
+							style="
+								font-weight: 900;
+								color: var(--orange);
+								margin-bottom: 6px;
+							">
+							DDR3
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							جيل أقدم — سرعة 800–2133 MT/s. لا يزال موجوداً في
+							الأجهزة القديمة
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border: 1px solid rgba(255, 77, 148, 0.2);
+							border-radius: 14px;
+							padding: 16px;
+						">
+						<div style="font-size: 1.4rem; margin-bottom: 8px">
+							💻
+						</div>
+						<div
+							style="
+								font-weight: 900;
+								color: var(--pink);
+								margin-bottom: 6px;
+							">
+							LPDDR5
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							نسخة اللابتوب والهواتف — استهلاك طاقة أقل مع سرعة
+							عالية
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="memory-hero">
+				<div
+					class="mem-title"
+					style="color: var(--yellow); margin-bottom: 10px">
+					هرم الذاكرة في الحاسوب
+				</div>
+				<div style="max-width: 500px; margin: 0 auto">
+					<div id="memPyramid"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="sec-storage">
+			<div class="sec-title">
+				<h2 style="color: var(--orange)">💾 أنواع التخزين ومقارنتها</h2>
+				<p>اكتشف الفرق بين HDD و SSD و NVMe وأيها الأنسب لك</p>
+			</div>
+
+			<div class="storage-grid" id="storGrid"></div>
+			<div
+				style="
+					background: var(--surface);
+					border: 1px solid rgba(255, 255, 255, 0.07);
+					border-radius: 20px;
+					padding: 24px;
+					margin-bottom: 24px;
+				">
+				<div
+					style="
+						font-weight: 900;
+						font-size: 1.1rem;
+						margin-bottom: 18px;
+						color: var(--orange);
+					">
+					⚡ مقارنة سرعة القراءة
+				</div>
+				<div id="speedBars"></div>
+			</div>
+			<div class="comp-table-wrap">
+				<div
+					style="
+						padding: 18px 20px 10px;
+						font-weight: 900;
+						font-size: 1.05rem;
+						color: var(--text);
+					">
+					📊 جدول مقارنة شامل
+				</div>
+				<div style="overflow-x: auto">
+					<table class="comp-table" id="compTable"></table>
+				</div>
+			</div>
+			<div
+				style="
+					background: var(--surface);
+					border: 1px solid rgba(255, 255, 255, 0.07);
+					border-radius: 20px;
+					padding: 24px;
+				">
+				<div
+					style="
+						font-weight: 900;
+						font-size: 1.1rem;
+						margin-bottom: 16px;
+						color: var(--yellow);
+					">
+					🎯 أيها تختار؟
+				</div>
+				<div
+					style="
+						display: grid;
+						grid-template-columns: repeat(
+							auto-fill,
+							minmax(220px, 1fr)
+						);
+						gap: 12px;
+					">
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border-radius: 14px;
+							padding: 14px;
+							border-right: 3px solid var(--orange);
+						">
+						<div style="font-weight: 800; margin-bottom: 6px">
+							🎮 الألعاب والبرمجة
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							NVMe SSD — أسرع أوقات تحميل، أداء عالٍ في نقل
+							الملفات الكبيرة
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border-radius: 14px;
+							padding: 14px;
+							border-right: 3px solid var(--cyan);
+						">
+						<div style="font-weight: 800; margin-bottom: 6px">
+							🏢 المكتب والدراسة
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							SATA SSD — سريع بما يكفي لمعظم المهام، سعر مناسب
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border-radius: 14px;
+							padding: 14px;
+							border-right: 3px solid var(--green2);
+						">
+						<div style="font-weight: 800; margin-bottom: 6px">
+							📦 أرشفة وتخزين ضخم
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							HDD — سعة تخزينية ضخمة بسعر منخفض، مناسب للنسخ
+							الاحتياطية
+						</div>
+					</div>
+					<div
+						style="
+							background: rgba(255, 255, 255, 0.04);
+							border-radius: 14px;
+							padding: 14px;
+							border-right: 3px solid var(--pink);
+						">
+						<div style="font-weight: 800; margin-bottom: 6px">
+							📱 اللابتوب والهواتف
+						</div>
+						<div
+							style="
+								font-size: 0.82rem;
+								color: var(--dim);
+								line-height: 1.6;
+							">
+							eMMC / UFS — رقاقات تخزين مدمجة، استهلاك منخفض
+							للطاقة
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<p>💻 مختبر مكونات الحاسوب التفاعلي</p>
+			<p>للطلاب في كل مكان</p>
+			<p class="footer-author">اعداد الست: بان امين سليمان</p>
+		</footer>
+
+		<script src="script.js"></script>
+	</body>
+</html>
